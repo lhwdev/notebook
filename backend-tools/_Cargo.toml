@@ -1,0 +1,8 @@
+[package]
+name = "backend-tools"
+version = "0.1.0"
+edition = "2018"
+repository = "https://github.com/lhwdev/notebook"
+
+[dependencies]
+toml = "0.4.2"
