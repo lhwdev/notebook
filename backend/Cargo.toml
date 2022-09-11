@@ -1,0 +1,3 @@
+[workspace]
+members = ["main", "database", "utils_macro", "model"]
+default-members = ["main"]

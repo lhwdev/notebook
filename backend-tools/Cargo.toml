@@ -6,3 +6,6 @@ repository = "https://github.com/lhwdev/notebook"
 
 [dependencies]
 toml = "0.4.2"
+liquid = "^0.26.0"
+serde_json = "^1"
+notify = "^4.0.0"

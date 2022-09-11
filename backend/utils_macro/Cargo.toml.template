@@ -1,0 +1,15 @@
+[package]
+name = "utils_macro"
+publish = false
+{{default.package}}
+
+[dependencies]
+syn = { version = "1.0", default_features = false, features = [ "parsing", "derive", "full", "clone-impls", "printing" ] }
+quote = "1.0"
+proc-macro2 ="1.0.40"
+{{deps.serde}}
+
+[lib]
+name = "utils_macro"
+path = "src/lib.rs"
+proc-macro = true

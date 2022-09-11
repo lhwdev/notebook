@@ -1,0 +1,17 @@
+[package]
+name = "main"
+default-run = "main"
+repository = "https://github.com/lhwdev/notebook"
+{{default.package}}
+
+[dependencies]
+database = { path = "../database" }
+
+{{deps.rocket}}
+{{deps.serde}}
+{{deps.serde_json}}
+
+{{deps.sea-orm}}
+{{deps.sea-orm-rocket}}
+
+{{prelude_deps}}

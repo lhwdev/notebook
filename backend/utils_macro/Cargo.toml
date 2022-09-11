@@ -1,0 +1,19 @@
+# This file was auto-generated.
+# To modify, see Cargo.toml.template and backend-tools.
+[package]
+name = "utils_macro"
+publish = false
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+syn = { version = "1.0", default_features = false, features = [ "parsing", "derive", "full", "clone-impls", "printing" ] }
+quote = "1.0"
+proc-macro2 ="1.0.40"
+serde = "^1.0.144"
+
+[lib]
+name = "utils_macro"
+path = "src/lib.rs"
+proc-macro = true

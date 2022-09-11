@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cargo",
+			"command": "run",
+			"options": {"cwd": "backend-tools"},
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "build",
+			"label": "rust: run backend-tools"
+		}
+	]
+}

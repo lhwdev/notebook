@@ -1,0 +1,2 @@
+[default.databases.notebook-main]
+url = "sqlite://./data/notebook-main.db"

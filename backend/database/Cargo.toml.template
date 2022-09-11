@@ -1,0 +1,8 @@
+[package]
+name = "database"
+{{default.package}}
+
+[dependencies]
+{{deps.sea-orm}}
+{{deps.sea-orm-rocket}}
+{{prelude_deps}}
