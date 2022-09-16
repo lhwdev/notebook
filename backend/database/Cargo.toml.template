@@ -4,5 +4,6 @@ name = "database"
 
 [dependencies]
 {{deps.sea-orm}}
+{{deps.rocket}}
 {{deps.sea-orm-rocket}}
 {{prelude_deps}}

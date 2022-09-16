@@ -1,11 +1,14 @@
 use async_trait::async_trait;
 use sea_orm::ConnectOptions;
-use sea_orm_rocket::{rocket::figment::Figment, Config, Database};
+use sea_orm_rocket::{rocket::figment::Figment, Config};
 use std::time::Duration;
 
 // Such Database.
 
 pub mod db {
+    use sea_orm_rocket::Database;
+    use super::SeaOrmPool;
+
     #[derive(Database, Debug)]
     #[database("notebook-main")]
     pub struct Main(SeaOrmPool);

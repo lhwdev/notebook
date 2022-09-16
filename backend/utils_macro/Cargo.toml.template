@@ -6,7 +6,8 @@ publish = false
 [dependencies]
 syn = { version = "1.0", default_features = false, features = [ "parsing", "derive", "full", "clone-impls", "printing" ] }
 quote = "1.0"
-proc-macro2 ="1.0.40"
+proc-macro2 = "1.0.40"
+darling = "0.14.0"
 {{deps.serde}}
 
 [lib]

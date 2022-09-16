@@ -5,6 +5,9 @@
 			"type": "cargo",
 			"command": "run",
 			"options": {"cwd": "backend-tools"},
+			"presentation": {
+				"reveal": "silent",
+			},
 			"problemMatcher": [
 				"$rustc"
 			],

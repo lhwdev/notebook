@@ -1,24 +1,42 @@
-use sea_orm::DeriveEntityModel;
-use serde::{Serialize, Deserialize};
+use utils::ThinOrmWrapper;
+
+pub type User = orm::Model;
+
+pub type PersonalInfo = orm::PersonalInfo;
 
 pub type Uid = u32;
 
-#[derive(PartialEq, Debug, Clone, DeriveEntityModel, Serialize, Deserialize)]
-#[sea_orm(table_name = "users")]
-pub struct Model {
-  #[sea_orm(primary_key)]
-  pub id: Uid,
+#[derive(ThinOrmWrapper, PartialEq, Debug, Clone)]
+pub struct Password(String);
 
-  pub name: String,
+pub mod orm {
+    use sea_orm::entity::prelude::*;
+    use serde::{Deserialize, Serialize};
 
-  pub nickname: String,
+    use super::{Uid, Password};
 
-  pub password: (),
+    #[derive(PartialEq, Debug, Clone, DeriveEntityModel, Serialize, Deserialize)]
+    #[sea_orm(table_name = "users")]
+    pub struct Model {
+        #[sea_orm(primary_key)]
+        pub id: Uid,
 
-  pub hi: MyStruct
+        pub name: String,
+
+        pub password: Password,
+
+        pub info: PersonalInfo,
+    }
+
+    #[derive(PartialEq, Debug, Clone, Serialize, Deserialize, FromJsonQueryResult)]
+    pub struct PersonalInfo {
+        pub nickname: String,
+
+        pub email: String,
+    }
+
+    #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
+    pub enum Relation {}
+
+    impl ActiveModelBehavior for ActiveModel {}
 }
-
-pub struct MyStruct {
-  a: i32
-}
-

@@ -1,0 +1,11 @@
+# This file was auto-generated.
+# To modify, see Cargo.toml.template and backend-tools.
+[package]
+name = "utils"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+serde = '^1.0.144'
+utils_macro = { path = "../utils_macro" }

@@ -1,0 +1,7 @@
+[package]
+name = "utils"
+{{default.package}}
+
+[dependencies]
+{{deps.serde}}
+utils_macro = { path = "../utils_macro" }

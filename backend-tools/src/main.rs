@@ -33,7 +33,11 @@ fn convert_root(env: BTreeMap<String, toml::Value>) -> liquid::Object {
                     let mut deps = liquid::Object::new();
                     for (key, value) in table {
                         let value = if let toml::Value::String(string) = value { string } else { panic!() };
-                        let scalar = liquid::model::Value::scalar(format!("{} = {}", key, value));
+                        let scalar = match value.chars().nth(0) {
+                            Some('@') => liquid::model::Value::scalar(value.chars().skip(1).collect::<String>()),
+                            Some('{') => liquid::model::Value::scalar(format!("{} = {}", key, value)),
+                            _ => liquid::model::Value::scalar(format!("{} = '{}'", key, value))
+                        };
                         deps.insert(liquid::model::KString::from_string(key), scalar);
                     }
                     obj.insert(key_map, liquid::model::Value::Object(deps));
@@ -50,8 +54,6 @@ fn convert_root(env: BTreeMap<String, toml::Value>) -> liquid::Object {
 }
 
 fn main() {
-    let mut args = std::env::args();
-
     let mut backend = PathBuf::new();
     backend.extend(current_dir().unwrap().parent().unwrap());
     backend.push("backend");
