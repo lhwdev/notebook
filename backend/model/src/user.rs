@@ -1,19 +1,36 @@
-use utils::ThinOrmWrapper;
+use crate::service::ServiceReferences;
 
-pub type User = orm::Model;
 
-pub type PersonalInfo = orm::PersonalInfo;
+#[derive(PartialEq, Debug, Clone)]
+pub struct User {
+    pub id: Uid,
+
+    pub name: String,
+
+    pub password: Password,
+
+    pub info: PersonalInfo,
+
+    pub services: ServiceReferences,
+}
+
+#[derive(PartialEq, Debug, Clone)]
+pub struct PersonalInfo {
+    pub nickname: String,
+
+    pub email: String,
+}
 
 pub type Uid = u32;
 
-#[derive(ThinOrmWrapper, PartialEq, Debug, Clone)]
+#[derive(PartialEq, Debug, Clone)]
 pub struct Password(String);
 
 pub mod orm {
     use sea_orm::entity::prelude::*;
     use serde::{Deserialize, Serialize};
 
-    use super::{Uid, Password};
+    use super::Uid;
 
     #[derive(PartialEq, Debug, Clone, DeriveEntityModel, Serialize, Deserialize)]
     #[sea_orm(table_name = "users")]
@@ -23,7 +40,7 @@ pub mod orm {
 
         pub name: String,
 
-        pub password: Password,
+        pub password: String,
 
         pub info: PersonalInfo,
     }
