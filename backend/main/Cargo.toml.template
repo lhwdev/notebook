@@ -5,7 +5,7 @@ repository = "https://github.com/lhwdev/notebook"
 {{default.package}}
 
 [dependencies]
-database = { path = "../database" }
+{{deps.projects.database}}
 
 {{deps.rocket}}
 {{deps.serde}}

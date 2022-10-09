@@ -1,0 +1,17 @@
+# This file was auto-generated.
+# To modify, see Cargo.toml.template and backend-tools.
+[package]
+name = "api"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+model = { path = "../model" }
+database = { path = "../database" }
+
+thiserror = '1.0.36'
+
+async-trait = "^0.1"
+utils = { path = "../utils" }
+

@@ -5,7 +5,9 @@ name = "model"
 [dependencies]
 {{deps.sea-orm}}
 {{deps.serde}}
+
 {{deps.serde_json}}
 {{deps.password-hash}}
+{{deps.url}}
 
 {{prelude_deps}}

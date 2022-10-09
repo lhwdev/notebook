@@ -1,8 +1,12 @@
 [package]
-name = "database"
+name = "http-api"
 {{default.package}}
 
 [dependencies]
+{{deps.projects.api}}
+{{deps.projects.model}}
+{{deps.projects.database}}
+
 {{deps.sea-orm}}
 {{deps.sea-orm-rocket}}
 {{deps.rocket}}

@@ -3,5 +3,6 @@ name = "utils"
 {{default.package}}
 
 [dependencies]
+{{deps.projects.utils_macro}}
+
 {{deps.serde}}
-utils_macro = { path = "../utils_macro" }

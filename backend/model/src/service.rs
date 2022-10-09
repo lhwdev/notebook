@@ -23,13 +23,12 @@ pub struct ServiceReference(ServiceId);
 pub struct ServiceReferences(Vec<ServiceReference>);
 
 #[cfg(test)]
-#[allow(unused_variables)]
 mod test {
     use super::ServiceInfo;
 
     #[test]
     fn mock_service() {
-        let service_info = ServiceInfo {
+        let _ = ServiceInfo {
             id: "builtin/auth".to_string(),
             name: "Authorization Service".to_string(),
         };

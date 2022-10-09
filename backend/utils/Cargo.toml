@@ -7,5 +7,6 @@ edition = "2021"
 
 
 [dependencies]
-serde = '^1.0.144'
 utils_macro = { path = "../utils_macro" }
+
+serde = '1.0.144'

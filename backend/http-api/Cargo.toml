@@ -1,19 +1,15 @@
 # This file was auto-generated.
 # To modify, see Cargo.toml.template and backend-tools.
 [package]
-name = "main"
-default-run = "main"
-repository = "https://github.com/lhwdev/notebook"
+name = "http-api"
 version = "0.1.0"
 edition = "2021"
 
 
 [dependencies]
+api = { path = "../api" }
+model = { path = "../model" }
 database = { path = "../database" }
-
-rocket = { version = "0.5.0-rc.2", features = ["json"] }
-serde = '1.0.144'
-serde_json = '1'
 
 
 sea-orm = { version = "^0.9.0", features = [
@@ -25,7 +21,7 @@ sea-orm = { version = "^0.9.0", features = [
 sea-query = "*"
 
 sea-orm-rocket = '0.5.0'
-
+rocket = { version = "0.5.0-rc.2", features = ["json"] }
 async-trait = "^0.1"
 utils = { path = "../utils" }
 

@@ -1,8 +1,11 @@
+mod template;
+mod toml_visitor;
+
 use std::{
     collections::BTreeMap,
     env::current_dir,
     fs::{self, read_to_string, write},
-    path::PathBuf,
+    path::{PathBuf, Path},
 };
 
 fn convert(value: toml::Value) -> liquid::model::Value {
@@ -23,7 +26,7 @@ fn convert(value: toml::Value) -> liquid::model::Value {
     }
 }
 
-fn convert_root(env: BTreeMap<String, toml::Value>) -> liquid::Object {
+fn convert_root(env: BTreeMap<String, toml::Value>, backend_dir: &Path) -> liquid::Object {
     let mut obj = liquid::Object::new();
     for (key, value) in env {
         let key_map = liquid::model::KString::from_ref(key.as_str());
@@ -40,6 +43,31 @@ fn convert_root(env: BTreeMap<String, toml::Value>) -> liquid::Object {
                         };
                         deps.insert(liquid::model::KString::from_string(key), scalar);
                     }
+
+                    fn project_deps_for(path: &Path) -> liquid::Object {
+                        let mut projects = liquid::Object::new();
+                        for module in path.read_dir().unwrap() {
+                            let module = module.unwrap();
+                            if module.file_type().unwrap().is_dir() {
+                                if module.path().join("Cargo.toml.template").exists() {
+                                    let name = module.file_name().to_str().unwrap().to_string();
+                                    projects.insert(name.clone().into(), liquid::model::Value::scalar(format!("{} = {{ path = \"../{}\" }}", &name, &name)));
+                                }
+                            }
+                        }
+                        projects
+                    }
+
+                    let mut projects = liquid::Object::new();
+                    for module in backend_dir.read_dir().unwrap() {
+                        let module = module.unwrap();
+                        if module.file_type().unwrap().is_dir() {
+                            let name = module.file_name().to_str().unwrap().to_string();
+                            projects.insert(name.clone().into(), liquid::model::Value::scalar(format!("{} = {{ path = \"../{}\" }}", &name, &name)));
+                        }
+                    }
+                    deps.insert("projects".into(), liquid::model::Value::Object(projects));
+
                     obj.insert(key_map, liquid::model::Value::Object(deps));
                 } else {
                     panic!("deps shape does not look good");
@@ -68,7 +96,7 @@ fn main() {
     };
 
     let parser = liquid::ParserBuilder::with_stdlib().build().unwrap();
-    let context = convert_root(env);
+    let context = convert_root(env, &backend);
 
     for module in backend.read_dir().unwrap() {
         let module = module.unwrap();

@@ -1,0 +1,11 @@
+[package]
+name = "api"
+{{default.package}}
+
+[dependencies]
+{{deps.projects.model}}
+{{deps.projects.database}}
+
+{{deps.thiserror}}
+
+{{prelude_deps}}

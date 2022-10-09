@@ -94,6 +94,7 @@ pub fn transform_thin_wrapper(input: DeriveInput, serde: bool) -> TokenStream {
 
     if attr.constructor {
         after.extend(quote! {
+            #[automatically_derived]
             impl #ident {
                 pub fn new(inner: #inner_type) -> Self {
                     Self(inner)
