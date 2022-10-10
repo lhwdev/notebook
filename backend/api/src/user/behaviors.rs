@@ -7,5 +7,6 @@ pub trait Logout {
 
 #[derive(Error, Debug)]
 pub enum LogoutError {
+    #[error("Unknown error: {0}")]
     Unknown(Box<dyn Error + 'static>),
 }
