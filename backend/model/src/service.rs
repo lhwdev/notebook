@@ -1,10 +1,7 @@
-
 pub type ServiceId = String;
 
 pub trait Service {
     fn info() -> &'static ServiceInfo;
-
-
 }
 
 #[derive(PartialEq, Debug, Clone)]
@@ -12,7 +9,6 @@ pub struct ServiceInfo {
     pub id: ServiceId,
 
     pub name: String,
-
     // TODO: some optional metadata
 }
 

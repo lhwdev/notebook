@@ -1,7 +1,7 @@
 pub mod block;
+pub mod component;
 pub mod span;
 pub mod style;
-pub mod component;
 
 use utils::note_node;
 

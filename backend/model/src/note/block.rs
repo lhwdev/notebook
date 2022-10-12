@@ -114,9 +114,9 @@ pub struct NumberedList {
 
 #[note_node]
 pub enum NumberFormat {
-    Arabic, // 1, 2, 3
-    Roman, // I, II, III
-    Alphabet, // a, b, c
+    Arabic,       // 1, 2, 3
+    Roman,        // I, II, III
+    Alphabet,     // a, b, c
     Repeat(char), // i, ii, iii / x, xx, xxx
 }
 

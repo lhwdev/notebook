@@ -1,3 +1,3 @@
-pub mod user;
-pub mod service;
 pub mod note;
+pub mod service;
+pub mod user;

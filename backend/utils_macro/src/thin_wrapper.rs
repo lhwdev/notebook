@@ -42,9 +42,7 @@ pub fn transform_thin_wrapper(input: DeriveInput, serde: bool) -> TokenStream {
         ThinWrapperData::default()
     };
 
-    let field = attr
-        .field
-        .unwrap_or_else(|| "0".to_string());
+    let field = attr.field.unwrap_or_else(|| "0".to_string());
     let field = TokenStream::from_str(field.as_str()).unwrap();
 
     let mut after = quote! {
@@ -133,4 +131,3 @@ mod test {
         println!("{}", result);
     }
 }
-

@@ -6,8 +6,8 @@ use std::time::Duration;
 // Such Database.
 
 pub mod db {
-    use sea_orm_rocket::Database;
     use super::SeaOrmPool;
+    use sea_orm_rocket::Database;
 
     #[derive(Database, Debug)]
     #[database("notebook-main")]

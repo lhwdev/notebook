@@ -1,6 +1,5 @@
 use crate::service::ServiceReferences;
 
-
 #[derive(PartialEq, Debug, Clone)]
 pub struct User {
     pub id: Uid,

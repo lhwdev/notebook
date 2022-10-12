@@ -1,9 +1,9 @@
 use quote::quote;
 use syn::{parse_macro_input, DeriveInput};
 
+mod enums;
 mod thin_orm_wrapper;
 mod thin_wrapper;
-mod enums;
 /// thin_wraper
 
 #[proc_macro_derive(ThinWrapper, attributes(thin_wrapper))]
@@ -33,7 +33,7 @@ pub fn note_node(
 ) -> proc_macro::TokenStream {
     let item: proc_macro2::TokenStream = item.into();
     let attr = syn::parse::<syn::Ident>(attr);
-    
+
     let mut result = quote! {
         #[derive(std::cmp::PartialEq, std::fmt::Debug, std::clone::Clone, serde::Serialize, serde::Deserialize)]
         #item
@@ -46,7 +46,7 @@ pub fn note_node(
             }
         };
     }
-    
+
     result.into()
 }
 
