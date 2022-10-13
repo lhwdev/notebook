@@ -16,15 +16,21 @@ pub enum LogoutError {
     #[error("Permission denied")]
     PermissionDenied,
 
-    #[error("Unknown error: {0}")]
-    Unknown(#[source] Box<dyn Error + 'static>),
+    #[error(transparent)]
+    Unknown(Box<dyn Error + 'static>),
+}
+
+/// What a funky name
+#[async_trait]
+pub trait GetMe<Me, Error> {
+    fn me(&self) -> Me;
+
+    async fn fetch_me(&mut self) -> Result<Me, Error>;
+
+    async fn fetch_me_with(&mut self, strategy: &CacheStrategy) -> Result<Me, Error>;
 }
 
 #[async_trait]
-pub trait Me<T> {
-    fn me(&self) -> T;
-
-    async fn fetch_me(&mut self) -> T;
-
-    async fn fetch_me_with(&mut self, strategy: CacheStrategy) -> T;
+pub trait EditMe<Me, Edit, Error> {
+    async fn edit_me(edit: Edit) -> Result<Me, Error>;
 }
