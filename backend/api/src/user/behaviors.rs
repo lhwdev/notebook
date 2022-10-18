@@ -23,14 +23,16 @@ pub enum LogoutError {
 /// What a funky name
 #[async_trait]
 pub trait GetMe<Me, Error> {
-    fn me(&self) -> Me;
+    fn me(&self) -> &Me;
 
-    async fn fetch_me(&mut self) -> Result<Me, Error>;
+    fn into_me(self) -> Me;
 
-    async fn fetch_me_with(&mut self, strategy: &CacheStrategy) -> Result<Me, Error>;
+    async fn fetch_me(&mut self) -> Result<&Me, Error>;
+
+    async fn fetch_me_with(&mut self, strategy: &CacheStrategy) -> Result<&Me, Error>;
 }
 
 #[async_trait]
 pub trait EditMe<Me, Edit, Error> {
-    async fn edit_me(edit: Edit) -> Result<Me, Error>;
+    async fn edit_me(&self, edit: Edit) -> Result<&Me, Error>;
 }

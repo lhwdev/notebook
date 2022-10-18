@@ -55,11 +55,11 @@ pub fn note_node(
 /// Create a conversion into super enum: impl From<SelfEnum> for InheritedEnum
 /// TODO: conversion into child: impl TryFrom<InheritedEnum> for SelfEnum
 #[proc_macro_attribute]
-pub fn inherit_enum(
+pub fn into_enum(
     attr: proc_macro::TokenStream,
     item: proc_macro::TokenStream,
 ) -> proc_macro::TokenStream {
-    enums::inherit_enum(attr.into(), item.into()).into()
+    enums::into_enum(attr.into(), item.into()).into()
 }
 
 #[proc_macro_attribute]

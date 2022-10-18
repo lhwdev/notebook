@@ -4,14 +4,14 @@ use syn::*;
 
 /// Create a conversion into super enum: impl From<SelfEnum> for InheritedEnum
 /// TODO: conversion into child: impl TryFrom<InheritedEnum> for SelfEnum
-pub fn inherit_enum(attr: TokenStream, item: TokenStream) -> TokenStream {
+pub fn into_enum(attr: TokenStream, item: TokenStream) -> TokenStream {
     let target: Path = parse2(attr).expect("Expected target enum as attribute");
     let self_enum: ItemEnum = parse2(item.clone()).expect("Expected valid enum");
 
-    inherit_enum_with(self_enum, item, target)
+    into_enum_with(self_enum, item, target)
 }
 
-pub fn inherit_enum_with(
+pub fn into_enum_with(
     self_enum: ItemEnum,
     self_enum_tokens: TokenStream,
     target: Path,

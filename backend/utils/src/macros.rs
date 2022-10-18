@@ -9,4 +9,4 @@ pub use utils_macro::note_node;
 pub use utils_macro::ThinOrmWrapper;
 pub use utils_macro::{ThinWrapper, ThinWrapperSerde};
 
-pub use utils_macro::{deref_enum, inherit_enum};
+pub use utils_macro::{deref_enum, into_enum};
