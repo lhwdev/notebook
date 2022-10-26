@@ -1,6 +1,9 @@
+use utils::GeneratePatch;
+
 use crate::service::ServiceReferences;
 
-#[derive(PartialEq, Debug, Clone)]
+#[derive(PartialEq, Debug, Clone, GeneratePatch)]
+#[generate_patch(name = "UserPatch")]
 pub struct User {
     pub id: Uid,
 
@@ -8,12 +11,14 @@ pub struct User {
 
     pub password: Password,
 
+    #[patch(PersonalInfoPatch)]
     pub info: PersonalInfo,
 
     pub services: ServiceReferences,
 }
 
-#[derive(PartialEq, Debug, Clone)]
+#[derive(PartialEq, Debug, Clone, GeneratePatch)]
+#[generate_patch(name = "PersonalInfoPatch")]
 pub struct PersonalInfo {
     pub nickname: String,
 

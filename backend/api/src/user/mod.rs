@@ -9,7 +9,7 @@ pub trait UserSubject: UserBehavior + Logout {}
 
 pub trait UserTarget: UserBehavior {}
 
-pub trait UserBehavior: GetMe<User, UserFetchError> {}
+pub trait UserBehavior: GetData<User, UserFetchError> {}
 
 #[derive(Error, Debug)]
 pub enum UserFetchError {

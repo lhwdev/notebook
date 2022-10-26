@@ -1,9 +1,14 @@
+// #![feature(is_some_with)]
+
 use quote::quote;
 use syn::{parse_macro_input, DeriveInput};
 
 mod enums;
 mod thin_orm_wrapper;
 mod thin_wrapper;
+mod patch;
+mod utils;
+
 /// thin_wraper
 
 #[proc_macro_derive(ThinWrapper, attributes(thin_wrapper))]
@@ -50,7 +55,7 @@ pub fn note_node(
     result.into()
 }
 
-// other utils?
+// enum utilities
 
 /// Create a conversion into super enum: impl From<SelfEnum> for InheritedEnum
 /// TODO: conversion into child: impl TryFrom<InheritedEnum> for SelfEnum
@@ -68,4 +73,12 @@ pub fn deref_enum(
     item: proc_macro::TokenStream,
 ) -> proc_macro::TokenStream {
     enums::deref_enum(attr.into(), item.into()).into()
+}
+
+/// patch: make all fields optional which make it fit for parameter of `subject.edit(PATCH HERE)`
+#[proc_macro_derive(GeneratePatch, attributes(generate_patch, patch))]
+pub fn generate_patch(
+    item: proc_macro::TokenStream,
+) -> proc_macro::TokenStream {
+    patch::generate_patch(item.into()).into()
 }

@@ -6,6 +6,12 @@ pub enum FetchStrategy {
     ForceCache,
 }
 
+impl Default for FetchStrategy {
+    fn default() -> Self {
+        Self::Cached(None)
+    }
+}
+
 pub struct CacheStrategy {
     pub max_age: Duration,
 }
