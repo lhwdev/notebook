@@ -1,0 +1,12 @@
+[package]
+name = "auth"
+{{default.package}}
+
+[dependencies]
+{{deps.projects.model}}
+{{deps.projects.api}}
+
+{{deps.sea-orm}}
+{{deps.sea-orm-rocket}}
+{{deps.rocket}}
+{{prelude_deps}}
